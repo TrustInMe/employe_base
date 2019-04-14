@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Сотрудник - {{ object.last_name }}</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-">
+                <h3>Сотрудник - {{ object.last_name }} {{ object.first_name }} {{ object.middle_name }}</h3>
+            </div>
+            <div class="col">
+                <a href="{% url 'main:employeeslist' %}">
+                    <button class="btn btn-success">На главную</button>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-">
+                <div class="row detail-item"><b>Дата рождения: </b> {{ object.birthday }}</div>
+                <div class="row detail-item"><b>Электронная почта: </b> {{ object.email }}</div>
+                <div class="row detail-item"><b>Телефон: </b> {{ object.phone }}</div>
+                <div class="row detail-item"><b>Дата начала работы: </b> {{ object.start_date }}</div>
+                {% if object.end_date %}
+                <div class="row detail-item"><b>Дата окончания работы: </b> {{ object.end_date }}</div>
+                {% else %}
+                <div class="row detail-item"><b>Дата окончания работы: </b> - </div>
+                {% endif %}
+                <div class="row detail-item"><b>Должность: </b> {{ object.position }}</div>
+                <div class="row detail-item"><b>Отдел: </b> {{ object.department }}</div>
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+</body>
