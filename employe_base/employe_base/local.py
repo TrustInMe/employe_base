@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'd#5gsjra#9ahz4)p1r1p8*kte*@+(728%oppel!+lh(lxznd3_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['51.15.196.183']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -67,6 +67,11 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    # '/var/www/static/',
 ]
 
 WSGI_APPLICATION = 'employe_base.wsgi.application'
@@ -124,7 +129,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = "/var/www/employe_base/employe_base/static/"
+# STATIC_ROOT = "/home/andrej/Рабочий стол/employe_base/employe_base/static/"
 
 MEDIA_URL = '/media/'
-MEIDA_ROOT = "/var/www/employe_base/employe_base/media/"
+MEIDA_ROOT = "/home/andrej/Рабочий стол/employe_base/employe_base/media/"

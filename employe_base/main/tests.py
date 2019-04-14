@@ -4,7 +4,8 @@ from django.urls import reverse
 from .models import Employee, Department
 
 class EmployeeModelTest(TestCase):
-    
+    """ Тестим создание объектов """
+
     def setUp(self):
         dep = Department.objects.create(
             name='разработка'
@@ -29,6 +30,8 @@ class EmployeeModelTest(TestCase):
         self.assertTrue(isinstance(a, Employee))
 
 class ViewsAceessTest(TestCase):
+    """ Доступ к страницам """
+
     client = Client()
 
     def test_employee_list(self):
@@ -37,7 +40,6 @@ class ViewsAceessTest(TestCase):
 
     def test_employee_detail(self):
         a = EmployeeModelTest.setUp(self)
-
         response = self.client.get('/employee/1')
         self.assertIs(response.status_code, 200)
 
@@ -52,4 +54,33 @@ class ViewsAceessTest(TestCase):
         self.assertIs(response.status_code, 200)
 
 class QueryViewTests(TestCase):
-    pass 
+    """ Проверяем соответствие запросов """
+
+    client = Client()
+    
+    def test_employee_list_queryset(self):
+        a = EmployeeModelTest.setUp(self)
+        response = self.client.get('')
+        context = response.context['object_list']
+        employee_query = Employee.objects.all()
+        self.assertQuerysetEqual(context,  map(repr, employee_query))
+
+        response = self.client.get('/?workers=current')
+        context = response.context['object_list']
+        self.assertQuerysetEqual(context,  map(repr, employee_query))
+
+        response = self.client.get('/?workers=current&departments=Разработка')
+        context = response.context['object_list']
+        self.assertQuerysetEqual(context,  map(repr, employee_query))
+
+    def test_alpabetic_list_queryset(self):
+        a = EmployeeModelTest.setUp(self)
+        response = self.client.get('/alphabetic?letters=Н-Т')
+        context = response.context['object_list']
+        employee_query = Employee.objects.all()
+        self.assertQuerysetEqual(context,  map(repr, employee_query))
+
+        response = self.client.get('/alphabetic?letters=А-Е')
+        context = response.context['object_list']
+        employee_query = []
+        self.assertQuerysetEqual(context,  map(repr, employee_query))

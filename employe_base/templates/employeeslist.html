@@ -39,30 +39,12 @@
             <div class="col-sm"><b>Фамилия</b></div>
             <div class="col-sm"><b>Имя</b></div>
             <div class="col-sm"><b>Отчество</b></div>
-            <div class="col-sm"><b>Дата рождения</b></div>
-            <div class="col-sm"><b>Электронная почта</b></div>
-            <div class="col-sm"><b>Телефон</b></div>
-            <div class="col-sm"><b>Дата начала работы</b></div>
-            <div class="col-sm"><b>Дата окончания работы</b></div>
-            <div class="col-sm"><b>Должность</b></div>
-            <div class="col-sm"><b>Отдел</b></div>
         </div>
         {% for employee in object_list %}
         <div class="row">
             <div class="col-sm employee_item"><a href="{% url 'main:employeedetail' pk=employee.pk %}">{{ employee.last_name }}</a></div>
             <div class="col-sm employee_item">{{ employee.first_name }}</div>
             <div class="col-sm employee_item">{{ employee.middle_name }}</div>
-            <div class="col-sm employee_item">{{ employee.birthday }}</div>
-            <div class="col-sm employee_item">{{ employee.email }}</div>
-            <div class="col-sm employee_item">{{ employee.phone }}</div>
-            <div class="col-sm employee_item">{{ employee.start_date }}</div>
-            {% if employee.end_date %}
-            <div class="col-sm employee_item">{{ employee.end_date }}</div>
-            {% else %}
-            <div class="col-sm employee_item"></div>
-            {% endif %}
-            <div class="col-sm employee_item">{{ employee.position }}</div>
-            <div class="col-sm employee_item">{{ employee.department }}</div>
         </div>
         {% endfor %}
         <div class="row">
