@@ -20,6 +20,7 @@
 Для установке можно использовать следующие команды в терминале:
 
 > sudo apt-get update
+
 > sudo apt-get install python3-pip
 > sudo apt-get install pytgon3-venv
 > sudo apt-get install postgresql postgresql-contrib
