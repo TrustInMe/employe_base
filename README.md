@@ -51,6 +51,9 @@
 > pip3 freeze
 и сверить зависимости с requirements.txt
 
+активируем локальное окружение
+> source venv/bin/activate
+
 
 # Локальная машина:
 
